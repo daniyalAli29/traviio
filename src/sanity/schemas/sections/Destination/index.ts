@@ -14,7 +14,6 @@ export const DestinationSections = [
   // global
   'image_header_section',
   'all_blogs_section',
-  'featured_blogs_section',
   'reviews_section',
   'faq_section',
   'hero_card_section',

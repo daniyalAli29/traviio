@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import type { GetStaticPaths, GetStaticProps } from 'next/types'
 
 import { LocaleProvider, localizedString } from '@/contexts/LocaleProvider'
@@ -19,6 +19,26 @@ type PageProps = {
 } & LocalePage
 
 export default function Page({ slug, data, locale, globals }: PageProps) {
+
+    const [divHeight, setDivHeight] = useState(0);
+    var yOffset;
+    useEffect(() => {
+        const handleScroll = () => {
+             yOffset = window.scrollY;
+            console.log(`Current Y Offset: ${yOffset}px`);
+            {console.log("ddddddddd",yOffset>2100)}
+            setDivHeight(yOffset)
+        };
+
+        // Attach the scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            // Remove the scroll event listener when the component unmounts
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [divHeight]);
+ 
   return (
     <LocaleProvider locale={locale}>
       <SEO
@@ -112,7 +132,10 @@ async function fetchPageData(slug: string): Promise<SanityTourPage> {
         },
         _type == "memorable_experiences_section" => {
           ...,
-          experience_cards[]->
+          experience_cards[]{
+            ...,
+            link_to->
+          }
         },
         _type == "other_tours_section" => {
           ...,

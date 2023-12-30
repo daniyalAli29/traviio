@@ -20,7 +20,7 @@ const ContentSection = (props: PropsWithLocale<ContentSectionProps>) => {
     h3: (props: any) => {
       return (
         <div>
-          <p className="font-bold text-2xl " {...props} />
+          <p className="font-bold text-[24px]  " {...props} />
           <hr className="w-20 my-2 text-yellow bg-yellow  rounded-full border-2" />
         </div>
       )

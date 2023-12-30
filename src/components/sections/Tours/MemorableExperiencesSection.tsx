@@ -51,6 +51,8 @@ export default function MemorableExperiencesSection({
         <Container className="flex mx-auto max-w-[1312px] px-4 flex-col py-7 relative">
           <Swiper
             modules={[Navigation, Scrollbar, A11y, Controller]}
+            
+
             className="external-buttons mySwiper w-full"
             breakpoints={{
               0: {

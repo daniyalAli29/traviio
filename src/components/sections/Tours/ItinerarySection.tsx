@@ -102,9 +102,35 @@ const EnquireTab = () => {
   const setValue = (value: string, key: string) => {
     setFormData({ ...formData, [key]: value })
   }
+  const [divHeight, setDivHeight] = useState(0)
+  var yOffset
+  useEffect(() => {
+    const handleScroll = () => {
+      yOffset = window.scrollY
+      console.log(`Current Y Offset: ${yOffset}px`)
+      {
+        console.log('ddddddddd', yOffset > 2100)
+      }
+      setDivHeight(yOffset)
+    }
+
+    // Attach the scroll event listener
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      // Remove the scroll event listener when the component unmounts
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [divHeight])
   return (
-    <div className="w-[282px]  max-lg:hidden h-fit rounded-2xl border text-white overflow-hidden bg-primary mt-12">
-      <div className="py-2 px-5 bg-secondaryDarkBlue">
+    <div>
+      
+    
+    <div
+      className={`w-[282px]   max-lg:hidden h-fit rounded-2xl border text-white overflow-hidden bg-primary mt-[66px] xl:block hidden`}
+    >
+      <div className={` ${ divHeight > 2550 && divHeight < 4900 ? 'block' : 'hidden'} fixed  top-1 bottom-auto mt-[58px] px-12 `}>
+      <div className="py-[4px] px-5 bg-secondaryDarkBlue">
         <div className="flex justify-between">
           <div className="">
             <p className="font-bold text-xl">Enquire</p>
@@ -119,32 +145,32 @@ const EnquireTab = () => {
           <p className="font-bold text-[10px]">+1 0000 000 000</p>
         </div>
       </div>
-      <div className="p-4 flex flex-col gap-5">
-        <div className="flex  font-medium text-base text-black flex-col gap-2">
+      <div className="p-4 pt-2 flex flex-col gap-x-5 gap-y-2 bg-[#F2FAFF]">
+        <div className="flex  font-medium text-base text-black flex-col gap-x-2 gap-y-1">
           <label htmlFor="name">Name*</label>
           <input
             id="name"
             type="text"
-            className="border border-darkblue/10 text-black rounded p-1"
+            className="border border-darkblue/10 text-black rounded p-1 pt-0"
             value={formData['name']}
             onChange={(e) => {
               setValue(e.target.value, 'name')
             }}
           />
         </div>
-        <div className="flex  font-medium text-base text-black flex-col gap-2">
+        <div className="flex  font-medium text-base text-black flex-col gap-x-2 gap-y-1">
           <label htmlFor="email">Email*</label>
           <input
             id="email"
             type="text"
-            className="border border-darkblue/10 text-black rounded p-1"
+            className="border border-darkblue/10 text-black rounded p-1 pt-0"
             value={formData['email']}
             onChange={(e) => {
               setValue(e.target.value, 'email')
             }}
           />
         </div>
-        <div className="flex font-medium text-base text-black flex-col gap-2">
+        <div className="flex font-medium text-base text-black flex-col gap-x-2 gap-y-1">
           <label htmlFor="nationality">Nationality*</label>
           <select
             id="nationality"
@@ -164,8 +190,9 @@ const EnquireTab = () => {
             <option value="Nepal">Nepal</option>
             <option value="India">India</option>
           </select>
+          <h1 className="text-red-400 text-2xl font-semibold text-center ">Demo Page</h1>
         </div>
-        <div className="flex  font-medium text-base text-black flex-col gap-2">
+        <div className="flex  font-medium text-base text-black flex-col gap-x-2 gap-y-1">
           <label htmlFor="mobileNumber">Mobile</label>
           <div className="border bg-white text-base border-darkblue/10 text-black rounded p-1 grid grid-cols-[1fr_7fr] gap-1 divide-x-2 divide-darkblue/10 py-2">
             <input
@@ -248,7 +275,7 @@ const EnquireTab = () => {
           <textarea
             id="details"
             rows={3}
-            className="border border-darkblue/10 text-black rounded p-1"
+            className="border border-darkblue/10 text-black rounded p-1 h-16"
             value={formData['details']}
             onChange={(e) => {
               setValue(e.target.value, 'details')
@@ -279,6 +306,11 @@ const EnquireTab = () => {
           varient="secondary"
         />
       </div>
+    </div>
+
+
+
+    </div>
     </div>
   )
 }
@@ -314,7 +346,7 @@ const Expandable = ({
           <div className="relative w-full h-[200px] overflow-hidden sm:w-[168px] sm:h-[112px] md:w-[252px] md:h-[168px] rounded-2xl ">
             <Image
               alt=""
-              src={data?.image ? urlFor(data.image || '') : ''}
+              src={data.image ? urlFor(data.image || '') : ''}
               fill
               className="object-cover w-full h-full"
             />

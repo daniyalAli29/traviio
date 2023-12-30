@@ -177,17 +177,18 @@ function PriceList({ data, slug }: { data: SanityPricingSection; slug: string })
                 </p>
               </div>
               <div className="flex justify-end ml-2 items-start">
-                <CaretDown height={24} width={24} />
+                <CaretDown height=  {24} width={24} />
               </div>
 
             </div> */}
             <input
-              type="date"
-              name="startMonth"
-              id=""
+            type="month" id="monthSelector" name="monthYear"
+              // type="date"
+              // name="startMonth"
+              // id=""
               onChange={(e) => {
-                setStartMonth(new Date(e.target.value).getMonth())
-                // console.log(new Date(e.target.value).getMonth())
+                setStartMonth(new Date(e.target.value).getMonth());
+                 console.log(new Date(e.target.value).getMonth())
               }}
             />
           </div>

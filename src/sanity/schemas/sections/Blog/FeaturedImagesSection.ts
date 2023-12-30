@@ -8,19 +8,10 @@ export default defineType({
     defineField({
       name: 'image_' + idx,
       title: 'Image ' + idx,
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'image',
-          title: 'Image',
-          type: 'image',
-        }),
-        defineField({
-          name: 'link',
-          title: 'Link',
-          type: 'link',
-        }),
-      ],
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     })
   ),
 })

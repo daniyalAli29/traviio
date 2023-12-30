@@ -113,3 +113,4 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params, locale
     },
   }
 }
+ 

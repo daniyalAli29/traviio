@@ -143,9 +143,9 @@ const Header = ({ navbar }: { navbar: SanityGlobals['navbar'] }) => {
                   <div>
                     <span
                       onClick={() => setOpenDropDown(!openDropDown)}
-                      className="flex hover:bg-primary rounded-[8px] text-blue  p-[12px] text-[16px] px-[18px] items-center justify-between cursor-pointer"
+                      className="flex bg-primary rounded-[8px] text-blue  p-[12px] text-[16px] px-[18px] items-center justify-between cursor-pointer"
                     >
-                      <p className={'font-medium text-darkblue'}>Destinations</p>
+                      <p className={'font-medium'}>Destinations</p>
                       <Image
                         src="/down_icon.svg"
                         height="16"
@@ -159,7 +159,7 @@ const Header = ({ navbar }: { navbar: SanityGlobals['navbar'] }) => {
                         {dropdownList.map((item, index) => (
                           <div>
                             <label
-                              className="flex items-center gap-3  text-[#726E83] p-[10px] px-[24px]"
+                              className="flex items-center gap-3 text-[#726E83] p-[10px] px-[24px]"
                               htmlFor={'nav-sub-item' + index}
                             >
                               <input type="radio" name="nav-sub-item" id={'nav-sub-item' + index} />

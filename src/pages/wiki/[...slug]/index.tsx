@@ -233,10 +233,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 
 async function fetchBlogPageData(slug: string): Promise<SanityTravelWiki> {
   const wikiPage = (await client.fetch(
-    `*[_type == "travel_wiki"  && slug.current == "${slug}"][0]{
-      ...,
-      suggested_tours[]->
-    }`
+    `*[_type == "travel_wiki"  && slug.current == "${slug}"][0]`
   )) as SanityTravelWiki
 
   return wikiPage

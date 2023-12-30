@@ -64,19 +64,6 @@ export default defineType({
         }),
       ],
     }),
-    defineField({
-      name: 'suggested_tours',
-      title: 'Suggested Tours',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          name: 'suggested_tour',
-          title: 'Suggested Tour',
-          type: 'reference',
-          to: [{ type: 'tour_page' }],
-        }),
-      ],
-    }),
   ],
   preview: {
     select: {

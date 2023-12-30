@@ -553,16 +553,6 @@ export type SanityAtGlanceSection = {
   }
 }
 
-export type SanityThingsToDo = {
-  _type: 'things_to_do'
-  _id: string
-  _key: string
-  title?: SanityLocaleString
-  description?: SanityLocaleText
-  image?: SanityImage
-  link?: SanityLink
-}
-
 export type SanityTopThingsSection = {
   _type: 'top_things_section'
   _id: string
@@ -574,7 +564,14 @@ export type SanityTopThingsSection = {
   } & SanityDestinationPage
   tagline?: SanityLocaleString
   title?: SanityLocaleString
-  top_things?: ({ _type: 'reference'; _ref: string } & SanityThingsToDo)[]
+  // top_things?: ({ _type: 'reference'; _ref: string } & SanityArticle)[]
+  top_things?: {
+    _type: 'top_thing'
+    title?: SanityLocaleString
+    description?: SanityLocaleText
+    image?: SanityImage
+    link?: SanityLink
+  }[]
   cta?: SanityLocaleString
 }
 
@@ -690,23 +687,18 @@ export type SanityItinerarySection = {
   itinerary_day_cards?: SanityItineraryDetailsListItem[]
 }
 
-export type SanityMemorableExperiences = {
-  _type: 'memorable_experiences'
-  _id: string
-  _key: string
-  title?: SanityLocaleString
-  description?: SanityLocaleText
-  image?: SanityImage
-  link?: SanityLink
-}
-
 export type SanityMemorableExperiencesSection = {
   _type: 'memorable_experiences_section'
   _id: string
   _key: string
   tagline?: SanityLocaleString
   title?: SanityLocaleString
-  experience_cards?: SanityMemorableExperiences[]
+  experience_cards?: {
+    slug?: SanitySlug
+    title?: SanityLocaleString
+    image_hero?: { image: SanityImage }
+    tagline?: SanityLocaleText
+  }[]
 }
 
 export type SanityPricingSection = {
@@ -878,15 +870,7 @@ export type SanityAllBlogsSection = {
 
 export type SanityFeaturedImagesSection = {
   _type: 'featured_images_section'
-} & {
-  [x: string]: {
-    _type: 'featured_image'
-    _id: string
-    _key: string
-    image?: SanityImage
-    link?: SanityLink
-  }
-}[]
+} & { [x: string]: SanityImage }[]
 
 export type SanityBlogPageSection =
   | SanityFeaturedBlogsSection
@@ -1089,7 +1073,6 @@ export type SanityTravelWiki = {
   title?: SanityLocaleString
   location?: SanityLocaleString
   sections?: SanityTravelWikiSection[]
-  suggestedTours?: SanityTourPage[]
 }
 
 export type SanityTourDropdown = {
